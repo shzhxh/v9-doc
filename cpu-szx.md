@@ -32,10 +32,11 @@ v9 computer是一个简化的计算机系统，包含一个简化的cpu v9，一
   - fixpc: 为xcircle,xpc,tpc,fpc赋值，处于for循环的起始位置，基本上包含了cpu函数的绝大部分内容
   - next: 处于for循环之后，基本上包含cpu函数的绝大部分内容
 - 重要函数作用推测
-  - rlook: 看起来像是推测目标是否可读(pde,pte只在rlook,wlook函数中出现)
-  - wlook: 看起来像是推测目标是否可写(pde,pte只在rlook,wlook函数中出现)
-  - flush: 实现TLB(页表缓冲)功能
-  - usage: 介绍指令集的用法
+  - rlook: 通过调用setpage建立TLB的映射关系(pde,pte只在rlook,wlook函数中出现)
+  - wlook: 通过调用setpage建立TLB的映射关系(pde,pte只在rlook,wlook函数中出现)
+  - flush: 清空TLB(页表缓冲)内的数据
+  - setpage:向TLB写入数据
+  - usage: 介绍虚拟机的用法
 - 寄存器
 - 指令集(共有209个指令)
 ```
