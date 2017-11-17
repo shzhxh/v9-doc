@@ -6,4 +6,16 @@ compiler-example.md: 一个简化的C语言编译器的说明文档。
 
 decaf-pa1a.md: 关于课后实验pa1a的文档。
 
-lecture3-lexical.md: 从我的角度改写的讲义3：词法分析。
+lecture1.md:简介
+
+lecture2.md:实验引导一
+
+lecture3-lexical.md: 词法分析
+
+lecture4_5.md:语法分析
+
+lecture6.md:符号表
+
+lecture7.md:实验引导2
+
+lecture8.md:语义计算基础
