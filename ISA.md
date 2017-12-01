@@ -12,20 +12,36 @@
 
 2. 指令编码
 
-   | 指令              | 机器码         | 字节数  |
-   | --------------- | ----------- | ---- |
-   | halt            | 0x00        | 1    |
-   | nop             | 0x10        | 1    |
-   | rrmov ra, rb    | 0x20+rarb   | 2    |
-   | irmov V, rb     | 0x30+Frb+V  | 6    |
-   | store ra, D(rb) | 0x40+rarb+D | 6    |
-   | load D(rb), ra  | 0x50+rarb+D | 6    |
-   | ALU ra, rb      | 0x6fn+rarb  | 2    |
-   | jXX Dest        | 0x7fn+Dest  | 5    |
-   | call Dest       | 0x80+Dest   | 5    |
-   | ret             | 0x90        | 1    |
-   | push ra         | 0xa0+raF    | 2    |
-   | pop ra          | 0xb0+raF    | 2    |
+   | 指令                | 机器码         | 字节数  |
+   | ----------------- | ----------- | ---- |
+   | halt              | 0x00        | 1    |
+   | nop               | 0x10        | 1    |
+   | rrmov %ra, %rb    | 0x20+rarb   | 2    |
+   | irmov V, %rb      | 0x30+Frb+V  | 6    |
+   | store %ra, D(%rb) | 0x40+rarb+D | 6    |
+   | load D(%rb), %ra  | 0x50+rarb+D | 6    |
+   | ALU %ra, %rb      | 0x6fn+rarb  | 2    |
+   | jXX Dest          | 0x7fn+Dest  | 5    |
+   | call Dest         | 0x80+Dest   | 5    |
+   | ret               | 0x90        | 1    |
+   | push %ra          | 0xa0+raF    | 2    |
+   | pop %ra           | 0xb0+raF    | 2    |
+   | in V, %ra         | 0xc0+Fra+V  | 3    |
+   | out %ra, V        | 0xd0+raF+V  | 3    |
+
+ALU里的fn对照表
+
+| 0    | 1    | 2    | 3    | 4    | 5    | 6    |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| add  | sub  | and  | or   | xor  | shl  | shr  |
+
+JXX里的fn对照表
+
+| 0    | 1    | 2    | 3    | 4    | 5    | 6    |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| jmp  | je   | jl   | jg   | jne  | jle  | jge  |
+
+
 
 #### 为什么要这么设计ISA呢，理由如下
 

@@ -32,7 +32,21 @@
 16. parser.yyparse方法进行了具体的分析工作。依据Yacc的说明文档，yyparse又调用了yylex进行词法分析的工作，得到标记(tokens)。如果一切正常，yyparse会返回0,否则返回1。
 
 
+#### decaf-PA1A的处理过程是什么样的？
 
+1. decaf的总控函数在类Driver.java里，理解了Driver.java里的main函数也就理解了decaf的执行逻辑。
+2. 首先会打开源文件，创建目标文件。这部分工作是由Option类的构造函数来完成的。最重要的两个属性是input和output。
+3. 具体的分析工作是由Parser类的parseFile方法来完成的。它的作用是生成一颗语法分析树。是采用的自底向上的LALR(1)分析方法。
+4. Parser类的parseFile方法就是yyparse()方法，yyparse()方法是由Parser.y自动生成的语法分析工具。
+5. yyparse()会调用yylex()方法来获得标记，yylex()方法是由Lexer.l自动生成的词法分析工具。yylex()方法每次只返回一个标记。
+6. 把生成的语法分析树写入目标文件中，这是由Tree类的printTo()方法来完成的。至此，decaf-PA1A的处理过程结束。
+
+#### 相同名称的变量出现在源代码不同文件中，它们的含义有什么不同吗？
+
+1. Lexer.l中的标记(NEWLINE、INTEGER等)只是正则表达式的记号，它并未出现在lexer.java中，由此可见lexer.l中的标记对源代码的其它部分无任何影响。lexer.l中用到的另一种标记Parser.XXX只是类Parser的属性。
+2.  Parser.y中的标记(由%token定义)是文法分析里的终结符，是在文法规则里用的。在Parser.java中体现为类的属性。而在Parser.y中出现的Tree.XXX虽然名字和Parser.y中的标记相同，但它们的数据类型、值和代表的意义都是不一样的。
+3.  Tree.java中的属性(public static final int TOPLEVEL等)虽然有一部分名字和Parser.y中的标记相同，但表达的意义不同，它表示的是抽象语法树里的某种结点。
+4.  SemValue.java中即用到了Tree.XXX也用到了Parser.XXX。
 
 
 

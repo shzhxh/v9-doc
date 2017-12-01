@@ -1,3 +1,16 @@
+2017.11.26~2017.12.01
+
+- 计算机组成原理课
+  - 本周计划完成一个秒表实验。用VHDL和Verilog都尝试了一下，均未能成功。我想秒表实验的电路图是挺简单的，是对硬件描述语言不够熟悉。同时考虑到开发板附带资料是用Verilog写的，所以我决定选用Verilog进行接下来的实验。我选择的参考书是《Verilog数字系统设计教程》(第2版，夏宇闻)。做了一些学习笔记：[Verilog.md](https://github.com/shzhxh/v9-doc/blob/master/composition-priciple/VerilogHDL.md)。
+- 编译原理课
+  - 本周计划完成PA2之前的所有实验。未完成，进展缓慢。学习笔记在[decaf-pa1a.md](https://github.com/shzhxh/v9-doc/blob/master/compiling-principle/decaf-pa1a.md)的最后部分增加了两个问题：pa1a的处理进程，同名变量在不同文件中的含义。
+- 新的v9项目
+  - 本周计划完成step2:扩充指令集，已完成。关于step2的说明：[step2.md](https://github.com/shzhxh/v9-doc/blob/master/docs/step2.md)。
+- 下周计划
+  1. 计算机组成原理：继续完成秒表实验，并完成ALU的实验。
+  2. 编译原理：deadline就在本周了，我还是想争取完成PA2之前的所有实验。
+  3. 新v9：对现有指令集进行测试，考虑中断指令和内存管理指令的实现问题，对现有指令集进行少量扩展。
+
 2017.11.18~2017.11.25
 
 * 计算机组成原理课
