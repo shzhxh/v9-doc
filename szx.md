@@ -6,7 +6,7 @@
 2017.11.26~2017.12.01
 
 - 计算机组成原理课
-  - 本周计划完成一个秒表实验。用VHDL和Verilog都尝试了一下，均未能成功。我想秒表实验的电路图是挺简单的，是对硬件描述语言不够熟悉。同时考虑到开发板附带资料是用Verilog写的，所以我决定选用Verilog进行接下来的实验。我选择的参考书是《Verilog数字系统设计教程》(第2版，夏宇闻)。做了一些学习笔记：[Verilog.md](https://github.com/shzhxh/v9-doc/blob/master/compiling-principle/decaf-pa1a.md)。
+  - 本周计划完成一个秒表实验。用VHDL和Verilog都尝试了一下，均未能成功。我想秒表实验的电路图是挺简单的，是对硬件描述语言不够熟悉。同时考虑到开发板附带资料是用Verilog写的，所以我决定选用Verilog进行接下来的实验。我选择的参考书是《Verilog数字系统设计教程》(第2版，夏宇闻)。做了一些学习笔记：[Verilog.md](https://github.com/shzhxh/v9-doc/blob/master/composition-principle/VerilogHDL.md)。
 - 编译原理课
   - 本周计划完成PA2之前的所有实验。未完成，进展缓慢。学习笔记在[decaf-pa1a.md](https://github.com/shzhxh/v9-doc/blob/master/compiling-principle/decaf-pa1a.md)的最后部分增加了两个问题：pa1a的处理进程，同名变量在不同文件中的含义。
 - 新的v9项目
