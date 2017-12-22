@@ -1,3 +1,7 @@
+2017.12.16～2017.12.22
+
+- 本周主要听Mr. 黄讲解android-x86的相关知识，做了一点初步的记录：[android-x86.md](https://github.com/shzhxh/v9-doc/blob/master/android-x86-porting.md)
+
 2017.12.9~2017.12.15
 
 1. 使用lex和bison搭建了一个编译器的框架，正在尝试实现一些简单的语言特性。
