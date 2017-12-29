@@ -1,3 +1,8 @@
+2017.12.23~2017.12.29
+
+- 读《flex与bison》，做了一些笔记：[flex&bison](https://github.com/shzhxh/v9-doc/blob/master/compiling-principle/flex%20and%20bison.md)
+- 看到有人写编译器用flex与bison生成前端，用llvm做后端，在网上搜了一下llvm的作用。似乎llvm能做的事还挺多，比如生成一个模拟器。我想多了解一点llvm。
+
 2017.12.16～2017.12.22
 
 - 本周主要听Mr. 黄讲解android-x86的相关知识，做了一点初步的记录：[android-x86.md](https://github.com/shzhxh/v9-doc/blob/master/android-x86-porting.md)
