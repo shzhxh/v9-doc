@@ -54,9 +54,43 @@ We encourage organizations, individuals and enthusiasts to join our ecosystem an
 
    2. 基本指令格式
 
-   3. 立即数编码
+      在基本ISA里，所有指令都是32位且必须4字节对齐。共有四种基本格式：R-type是寄存器-寄存器操作，I-type是寄存器-立即数操作，S-type，U-type。
+
+      立即数字段里放的是立即数的位置，而不是它本身。
+
+      R-type: **funct7**[31:25] **rs2**[24:20] **rs1**[19:15] **funct3**[14:12] **rd**[11:7] **opcode**[6:0]
+
+      I-type: **imm[11:0]**[31:20] **rs1**[19:15] **funct3**[14:12] **rd**[11:7] **opcode**[6:0]
+
+      S-type: **imm[11:5]**[31:25] **rs2**[24:20] **rs1**[19:15] **funct3**[14:12] **imm[4:0]**[11:7] **opcode**[6:0]
+
+      U-type: **imm[31:12]**[31:12] **rd**[11:7] **opcode**[6:0]
+
+   3. 立即数编码的变体
+
+      B是S的变体，J是U的变体
+
+      B-type: **imm[12]imm[10:5]**[31:25] **rs2**[24:20] **rs1**[19:15] **funct3**[14:12] **imm[4:1]imm[11]**[11:7] **opcode**[6:0]
+
+      J-type:**imm[20]imm[10:1]imm[11]imm[19:12]**[31:12] **rd**[11:7] **opcode**[6:0]
 
    4. 整数计算指令
+
+      整数计算指令只有两种格式：I-type和R-type。
+
+      | imm+rs1+funct3+rd+OP-IMM | funct3 | 意义                                   |
+      | ------------------------ | ------ | ------------------------------------ |
+      | ADDI rd, rs1, imm        | ADDI   | rd = rs1 + imm                       |
+      | SLTI rd, rs1, imm        | SLTI   | if(rs1<imm) rd=1; else rd=0;(用于有符号数) |
+      | SLTIU rd, rs1, imm       | SLTIU  | if(rs1<imm) rd=1; else rd=0;(用于无符号数) |
+      | ANDI rd, rs1, imm        | ANDI   | rd = rs1 & imm                       |
+      | ORI rd, rs1, imm         | ORI    | rd = rs1 \| imm                      |
+      | XORI rd, rs1, imm        | XORI   | rd = rs1 ^ imm                       |
+      | SLLI rd, rs1, imm        | SLLI   | rd = rs1 << imm[4:0]                 |
+      | SRLI rd, rs1, imm        | SRLI   | rd = (unsigned) rs1 >> imm[4:0]      |
+      | SRAI rd, rs1, imm        | SRAI   | rd = (signed) rs1 >> imm[4:0]        |
+
+      ​
 
    5. 控制转换指令
 

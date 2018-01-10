@@ -1,3 +1,7 @@
+2017.12.30~2018.01.12
+
+- 成功复现了张蔚的工作，记录了安装过程：[llb-qemu安装过程](https://github.com/shzhxh/v9-doc/blob/master/OS/installation-szx.md)
+
 2017.12.23~2017.12.29
 
 - 读《flex与bison》，做了一些笔记：[flex&bison](https://github.com/shzhxh/v9-doc/blob/master/compiling-principle/flex%20and%20bison.md)
