@@ -1,30 +1,8 @@
-## About the RISC-V Foundation
-
-RISC-V (pronounced “risk-five”) is an open, free ISA enabling a new era of processor innovation through open standard collaboration. Founded in 2015, the RISC-V Foundation comprises more than 100 [members](https://riscv.org/members-at-a-glance/) building the first open, collaborative community of software and hardware innovators powering innovation at the edge forward. Born in academia and research, RISC-V ISA delivers a new level of free, extensible software and hardware freedom on architecture, paving the way for the next 50 years of computing design and innovation.
-
-RISC-V是一个开放、自由的ISA，通过开放标准的协作使ISA进入了处理器创新的新时代。成立于2015年的RISC-V基金会由100多名成员组成，这是第一个开放的、协作的软件和硬件创新者社区，驱动着创新的前沿。RISC-V ISA诞生于学术界和研究领域，它提供了一种新的自由，在架构层面扩展软件和硬件的自由，为未来50年的计算设计和创新铺平了道路。
-
-The RISC-V Foundation, a non-profit corporation controlled by its members, directs the future development and drives the adoption of the RISC-V ISA. Members of the RISC-V Foundation have access to and participate in the development of the RISC-V ISA specifications and related HW / SW ecosystem. The Foundation has a [Board of Directors](https://riscv.org/leadership/) comprising seven representatives from Bluespec, Inc.; Google; Microsemi; NVIDIA; NXP; University of California, Berkeley; and Western Digital.
-
-RISC-V基金会,一个由其成员控制的非盈利的公司,指导着RISC-V ISA未来的发展并驱动着其适配。RISC-V基金会的成员可以访问并参与RISC-V ISA规范的发展和相关软/硬件的生态系统。基金会的董事会包含7个代表：Bluespec公司、谷歌、Microsemi、英伟达、NXP、加州大学伯克利分校和西部数据。
-
-Each spring and fall, the expansive RISC-V ecosystem comes together to discuss current and prospective RISC-V projects and implementations, as well as collectively drive the future evolution of the instruction set architecture (ISA) forward. Workshop sessions feature leading technology companies and research institutions discussing the RISC-V architecture, commercial and open-source implementations, software and silicon, vectors and security, applications and accelerators, simulation infrastructure and much more. Learn more by visiting the [Workshop News](https://riscv.org/workshops/) and [Workshop Proceedings](https://riscv.org/category/workshops/proceedings/) pages.
-
-每年的春天和秋季，广泛的RISC-V生态系统聚集在一起讨论当前和未来的RISC项目和实现，并共同推动指令集架构(ISA)的未来发展。领先的技术公司和研究机构引领研讨会的主题，讨论RISC-V架构、商业和开源的实现、软件和硅、矢量和安全、应用和加速器、仿真基础设施等等。通过访问[研讨会的新闻](https://riscv.org/workshops/)和[专题讨论](https://riscv.org/category/workshops/proceedings/) 会了解更多。
-
-The RISC-V ISA was originally developed in the [Computer Science Division](http://www.cs.berkeley.edu/) of the EECS Department at the [University of California, Berkeley](http://www.berkeley.edu/).
-
-RISC-V ISA最初开发于加利福尼亚大学伯克利分校的EECS系计算机科学部。
-
-We encourage organizations, individuals and enthusiasts to join our ecosystem and together enable a new era of processor innovation through open standard collaboration.
-
-我们鼓励组织、个人和热心人士加入我们的生态系统，通过开放标准协作，共同开创一个新的处理器创新时代。
-
 ## RISC-V ISA手册
 
 本手册分为两卷，上卷讲用户级指令，下卷讲特权级指令。
 
-### RISC-V 手册上册
+### RISC-V 手册上卷(riscv-spec-v2.2)
 
 1. 介绍
 
@@ -46,7 +24,7 @@ We encourage organizations, individuals and enthusiasts to join our ecosystem an
 
 2. RV32I指令集
 
-   RV32I是基本指令集，它被设计足以支持一个现代的操作系统，而且除了A扩展外它基本上能模拟所有的其它扩展。
+   RV32I是基本指令集，它被设计足以支持一个现代的操作系统，而且除了A扩展外它基本上能模拟所有的其它扩展。RV32I共计47条指令。
 
    1. 程序员模型
 
@@ -74,42 +52,157 @@ We encourage organizations, individuals and enthusiasts to join our ecosystem an
 
       J-type:**imm[20]imm[10:1]imm[11]imm[19:12]**[31:12] **rd**[11:7] **opcode**[6:0]
 
-   4. 整数计算指令
+   4. 整数计算指令(共计22条指令)
 
-      整数计算指令只有两种格式：I-type和R-type。
+      | imm+rs1+funct3+rd+opcode                 | funct3 | opcode | 意义                              |
+      | ---------------------------------------- | ------ | ------ | ------------------------------- |
+      | ADDI rd, rs1, imm                        | ADDI   | OP-IMM | rd = rs1 + imm                  |
+      | SLTI rd, rs1, imm (set less than immediate) | SLTI   | OP-IMM | rd = (rs1<rs2) ? 1 : 0(用于有符号数)  |
+      | SLTIU rd, rs1, imm                       | SLTIU  | OP-IMM | rd = (rs1<rs2) ? 1 : 0(用于无符号数)  |
+      | ANDI rd, rs1, imm                        | ANDI   | OP-IMM | rd = rs1 & imm                  |
+      | ORI rd, rs1, imm                         | ORI    | OP-IMM | rd = rs1 \| imm                 |
+      | XORI rd, rs1, imm                        | XORI   | OP-IMM | rd = rs1 ^ imm                  |
+      | SLLI rd, rs1, imm                        | SLLI   | OP-IMM | rd = rs1 << imm[4:0]            |
+      | SRLI rd, rs1, imm                        | SRLI   | OP-IMM | rd = (unsigned) rs1 >> imm[4:0] |
+      | SRAI rd, rs1, imm                        | SRAI   | OP-IMM | rd = (signed) rs1 >> imm[4:0]   |
 
-      | imm+rs1+funct3+rd+OP-IMM | funct3 | 意义                                   |
-      | ------------------------ | ------ | ------------------------------------ |
-      | ADDI rd, rs1, imm        | ADDI   | rd = rs1 + imm                       |
-      | SLTI rd, rs1, imm        | SLTI   | if(rs1<imm) rd=1; else rd=0;(用于有符号数) |
-      | SLTIU rd, rs1, imm       | SLTIU  | if(rs1<imm) rd=1; else rd=0;(用于无符号数) |
-      | ANDI rd, rs1, imm        | ANDI   | rd = rs1 & imm                       |
-      | ORI rd, rs1, imm         | ORI    | rd = rs1 \| imm                      |
-      | XORI rd, rs1, imm        | XORI   | rd = rs1 ^ imm                       |
-      | SLLI rd, rs1, imm        | SLLI   | rd = rs1 << imm[4:0]                 |
-      | SRLI rd, rs1, imm        | SRLI   | rd = (unsigned) rs1 >> imm[4:0]      |
-      | SRAI rd, rs1, imm        | SRAI   | rd = (signed) rs1 >> imm[4:0]        |
+      | imm+rd+opcode                            | opcode | 意义                    |
+      | ---------------------------------------- | ------ | --------------------- |
+      | LUI rd, imm (load upper immediate)       | LUI    | rd = (imm << 12)      |
+      | AUIPC rd, imm (add upper immediate to pc) | AUIPC  | rd = (imm << 12) + PC |
 
-      | imm+rd+opcode | opcode | 意义                            |
-      | ------------- | ------ | ----------------------------- |
-      | LUI rd, imm   | LUI    | rd = (imm << 12) & 0xFFFFF000 |
-      |               |        |                               |
+      | funct7+rs2+rs1+funct3+rd+opcode | funct7  | funct3 | opcode | 意义                                  |
+      | ------------------------------- | ------- | ------ | ------ | ----------------------------------- |
+      | ADD rd, rs1, rs2                | 0000000 | ADD    | OP     | rd = rs1 + rs2                      |
+      | SLT rd, rs1, rs2                | 0000000 | STL    | OP     | rd = (rs1<rs2) ? 1 : 0 (用于有符号数)     |
+      | SLTU rd, rs1, rs2               | 0000000 | STLU   | OP     | rd = (rs1<rs2) ? 1 : 0 (用于无符号数)     |
+      | AND rd, rs1, rs2                | 0000000 | AND    | OP     | rd = rs1 & rs2                      |
+      | OR rd, rs1, rs2                 | 0000000 | OR     | OP     | rd = rs1 \| rs2                     |
+      | XOR rd, rs1, rs2                | 0000000 | XOR    | OP     | rd = rs1 ^ rs2                      |
+      | SLL rd, rs1, rs2                | 0000000 | SLL    | OP     | rd = rs1 << (rs2 & 0x1F )           |
+      | SRL rd, rs1, rs2                | 0000000 | SRL    | OP     | rd = (unsigned) rs1 >> (rs2 & 0x1F) |
+      | SUB rd, rs1, rs2                | 0100000 | SUB    | OP     | **待查证**                             |
+      | SRA rd, rs1, rs2                | 0100000 | SRA    | OP     | rd = (signed) rs1 >> (rs2 & 0x1F)   |
+
+      NOP指令的编码：ADDI x0, x0, 0
+
+   5. 控制转移指令(8条指令)
+
+      - 无条件跳转(U-type or J-type)
+
+        | 指令                                       | 编码                                | 意义                           |
+        | ---------------------------------------- | --------------------------------- | ---------------------------- |
+        | JAL rd, imm(jump and link)               | imm+rd+JAL(opcode)                | rd = pc + 4; pc = imm << 12; |
+        | JALR rd, rs1, imm(jump and link register) | imm+rs1+0(funct3)+rd+JALR(opcode) | rd = pc + 4; pc = rs1 + imm; |
+
+        ​
+
+      - 条件分支(S-type or B-type)
+
+        | imm+rs2+rs1+funct3+imm+opcode | funct3   | opcode | 意义           |
+        | ----------------------------- | -------- | ------ | ------------ |
+        | BEQ                           | BEQ      | BRANCH | if(rs1==rs2) |
+        | BNE                           | BNE      | BRANCH | if(rs1!=rs2) |
+        | BLT/BLTU                      | BLT/BLTU | BRANCH | if(rs1<rs2)  |
+        | BGE/BGEU                      | BGE/BGEU | BRANCH | if(rs1>=rs2) |
+
+        ​
+
+   6. LOAD和STORE指令(8条指令)
+
+      | imm+rs1+funct3+rd+opcode | funct3 | opcode | 意义              |
+      | ------------------------ | ------ | ------ | --------------- |
+      | LW(32位)                  | 宽度     | LOAD   | rd=mem(rs1+imm) |
+      | LH(16位，符号扩展)             | 宽度     | LOAD   | rd=mem(rs1+imm) |
+      | LHU(16位，无符号扩展)           | 宽度     | LOAD   | rd=mem(rs1+imm) |
+      | LB(8位，符号扩展)              | 宽度     | LOAD   | rd=mem(rs1+imm) |
+      | LBU(8位，无符号扩展)            | 宽度     | LOAD   | rd=mem(rs1+imm) |
+
+      | imm+rs2+rs1+funct3+imm+opcode | funct3 | opcode | 意义               |
+      | ----------------------------- | ------ | ------ | ---------------- |
+      | SW(32位)                       | 宽度     | STORE  | mem(rs1+imm)=rs2 |
+      | SH(16位)                       | 宽度     | STORE  | mem(rs1+imm)=rs2 |
+      | SB(8位)                        | 宽度     | STORE  | mem(rs1+imm)=rs2 |
 
       ​
 
-   5. 控制转换指令
+   7. 内存模型(2条指令)
 
-   6. 内存操作指令
+      我理解内存模型说的是IO设备也当作内存来使用。
 
-   7. 内存模型
+      | imm[11:0]                         | rs1     | funct3  | rd      | opcode   | 意义        |
+      | --------------------------------- | ------- | ------- | ------- | -------- | --------- |
+      | imm[11:8]保留，imm[7:4]前续，imm[3:0]后续 | 保留，应置为0 | FENCE   | 保留，应置为0 | MISC-MEM | 顺序化IORW访问 |
+      | imm[11:0]保留，应置为0                  | 保留，应置为0 | FENCE.I | 保留，应置为0 | MISC-MEM | 同步指令和数据流  |
 
-   8. 控制和状态寄存器指令
+      ​
 
-   9. 环境调用
+   8. 控制和状态寄存器指令(6条指令)
+
+      - CSR指令
+
+      | csr         | rs1       | funct3 | rd   | opcode | 意义                      |
+      | ----------- | --------- | ------ | ---- | ------ | ----------------------- |
+      | source/dest | source    | CSRRW  | dest | SYSTEM | rd=csr; csr=rs1         |
+      | source/dest | source    | CSRRS  | dest | SYSTEM | rd=csr; csr\|=rs1       |
+      | source/dest | source    | CSRRC  | dest | SYSTEM | rd=csr; csr &= !rs1     |
+      | source/dest | uimm[4:0] | CSRRWI | dest | SYSTEM | rd=csr; csr=uimm[4:0]   |
+      | source/dest | uimm[4:0] | CSRRSI | dest | SYSTEM | rd=csr; csr\|=uimm[4:0] |
+      | source/dest | uimm[4:0] | CSRRCI | dest | SYSTEM | rd=csr; csr\|=uimm[4:0] |
+
+      - 计时器和计数器(伪指令)
+
+      | csr                    | rs1  | funct3 | rd   | opcode | 意义            |
+      | ---------------------- | ---- | ------ | ---- | ------ | ------------- |
+      | RDCYCLE/RDCYCLEH       | 0    | CSRRS  | dest | SYSTEM | 读取cycle CSR   |
+      | RDTIME/RDTIMEH         | 0    | CSRRS  | dest | SYSTEM | 读取time CSR    |
+      | RDINSTRENT/RDINSTRENTH | 0    | CSRRS  | dest | SYSTEM | 读取instret CSR |
+
+      ​
+
+   9. 环境调用和断点(1条指令)
+
+      | funct12 | rs1  | funct3 | rd   | opcode | 意义           |
+      | ------- | ---- | ------ | ---- | ------ | ------------ |
+      | ECALL   | 0    | PRIV   | 0    | SYSTEM | 用于产生对执行环境的请求 |
+      | EBREAK  | 0    | PRIV   | 0    | SYSTEM | 调试器用它返回调试环境  |
+
+      ​
 
 3. RV32E：RV32I的精简版，为嵌入式系统而设计
 
-4. RV64I
+   1. 程序员模型：通用寄存器从31个(x1~x31)减少到15个(x1~x15)
+   2. 指令集：与RV32I相同，但计时器和计数器伪指令不是必须的。
+   3. 扩展：可进行M,A,C扩展，只有两种特权级(用户模式和机器模式)
+
+4. RV64I：RV32I的变体，只描述与RV32I的不同之处。
+
+   1. 寄存器状态：寄存器扩展为64位，且支持64位用户地址空间。
+
+   2. 整数计算指令(增加了9条特有指令)
+
+      RV64I的指令长度也是32位的，操作的是64位数值。但也提供了变种指令来操作32位数值，这些指令的操作码后面都增加了后缀“W"，是RV64I特有的指令。
+
+      | imm       | rs1  | funct3 | rd   | opcode    |
+      | --------- | ---- | ------ | ---- | --------- |
+      | imm[11:0] | src  | ADDIW  | dest | OP-IMM-32 |
+      | imm[4:0]  | src  | SLLIW  | dest | OP-IMM-32 |
+      | imm[4:0]  | src  | SRLIW  | dest | OP-IMM-32 |
+      | imm[4:0]  | src  | SRAIW  | dest | OP-IMM-32 |
+
+      | funct7  | rs2  | rs1  | funct3    | rd   | opcode |
+      | ------- | ---- | ---- | --------- | ---- | ------ |
+      | 0000000 | src2 | src1 | ADDW      | dest | OP-32  |
+      | 0000000 | src2 | src1 | SLLW/SRLW | dest | OP-32  |
+      | 0100000 | src2 | src1 | SUBW/SRAW | dest | OP-32  |
+
+      ​
+
+   3. Load和Store指令(增加了3条指令)
+
+      增加LD(64位)，LWU(32位无符号)，SD(64位）三条指令。
+
+   4. 系统指令：与RV32I完全相同，只是操作的对象换成了64位的。
 
 5. RV128I
 
@@ -148,3 +241,103 @@ We encourage organizations, individuals and enthusiasts to join our ecosystem an
 22. ISA子集命名约定
 
 23. 历史与致谢
+
+### RISC-V手册下卷(riscv-privileged-v1.10)
+
+1. 介绍
+
+   1. 硬件平台术语
+
+      hart：硬件线程
+
+      核心(core)：包含独立取指单元的组件。
+
+      协处理器(coprocessor)：是与RISC-V核心相连的一个单元，且主要被RISC-V指令流序列化，但包含了一些额外的体系结构状态和指令集扩展，相对于主RISC-V指令流来说可能会有些有限的自治。
+
+      加速器(accelerator)：一个非可编程的固定功能单元，或可以自治工作、但专门用于某项任务的核心。
+
+   2. 特权软件栈术语
+
+      AEE：应用程序执行环境
+
+      ABI：应用程序二进制接口
+
+      SBI：管理员二进制接口
+
+      SEE：管理员执行环境
+
+      HBI：管理程序二进制接口
+
+      HEE：管理程序执行环境
+
+      HAL：硬件抽象层
+
+   3. 特权级
+
+      | 级别   | 编码   | 名字    | 缩写   | 特点          |
+      | ---- | ---- | ----- | ---- | ----------- |
+      | 0    | 00   | 用户/应用 | U    | 应用程序        |
+      | 1    | 01   | 管理员   | S    | 操作系统        |
+      | 2    | 10   | 管理程序  | H    | 虚拟机监视器      |
+      | 3    | 11   | 机器    | M    | 必需的，可信的，最高级 |
+
+   4. 调试模式：用以支持片外调试或制造测试，可以认为是一种比机器级更高的特权级。
+
+2. 控制和状态寄存器(CSR)
+
+   1. 访问CSR的指令：即RS32I里的CSR指令
+   2. CSR地址映射约定：请阅读各个特权级的地址空间分配表
+   3. CSR列表：请阅读各个特权级已分配的CSR地址
+
+3. 机器级ISA
+
+   1. 机器级CSR：mcpuid, mimpid, mhartid, mstatus, mtvex, mtdeleg, mip, mie, mtime, mtimecmp, mscratch, mepc, mcause, mbadaddr
+
+   2. 机器模式特权指令
+
+      | funct12 | rs1  | funct3 | rd   | opcode | 意义               |
+      | ------- | ---- | ------ | ---- | ------ | ---------------- |
+      | ECALL   | 0    | PRIV   | 0    | SYSTEM | 向更高特权级发起请求       |
+      | EBREAK  | 0    | PRIV   | 0    | SYSTEM | 将控制转回调试环境        |
+      | ERET    | 0    | PRIV   | 0    | SYSTEM | 返回到自陷产生的特权级      |
+      | MRTS    | 0    | PRIV   | 0    | SYSTEM | 将自陷处理从机器级转到管理员级  |
+      | MRTH    | 0    | PRIV   | 0    | SYSTEM | 将自陷处理从机器级转到管理程序级 |
+      | WFI     | 0    | PRIV   | 0    | SYSTEM | 等待中断             |
+
+   3. 物理存储器属性：描述的是为物理地址区间指定属性的方法
+
+   4. 物理存储器访问控制
+
+   5. Mbare寻址环境
+
+   6. 基址-边界环境
+
+4. 管理员级ISA
+
+   1. 管理员CSR：sstatus, sip, sie, stime, stimecmp, sscratch, sepc, scause, sbadaddr, sptbr, sasid
+
+   2. 管理员指令
+
+      | funct12   | rs1   | funct3 | rd   | opcode | 意义          |
+      | --------- | ----- | ------ | ---- | ------ | ----------- |
+      | SFENCE.VM | vaddr | PRIV   | 0    | SYSTEM | 更新存储器管理数据结构 |
+
+   3. 管理员在Mbare环境中的操作
+
+   4. 管理员在基址边界环境中的操作
+
+   5. Sv32:基于页面的32位虚拟存储器系统
+
+   6. Sv39:基于页面的39位虚拟存储器系统
+
+   7. Sv48:基于页面的48位虚拟存储器系统
+
+5. Hypervisor扩展
+
+6. RISC-V特权指令列表
+
+7. 平台级中断控制器(PLIC)
+
+8. 机器配置描述
+
+9. 历史
