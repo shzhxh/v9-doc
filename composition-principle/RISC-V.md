@@ -90,6 +90,11 @@ We encourage organizations, individuals and enthusiasts to join our ecosystem an
       | SRLI rd, rs1, imm        | SRLI   | rd = (unsigned) rs1 >> imm[4:0]      |
       | SRAI rd, rs1, imm        | SRAI   | rd = (signed) rs1 >> imm[4:0]        |
 
+      | imm+rd+opcode | opcode | 意义                            |
+      | ------------- | ------ | ----------------------------- |
+      | LUI rd, imm   | LUI    | rd = (imm << 12) & 0xFFFFF000 |
+      |               |        |                               |
+
       ​
 
    5. 控制转换指令
