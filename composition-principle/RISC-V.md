@@ -291,7 +291,19 @@
 
 3. 机器级ISA
 
-   1. 机器级CSR：mcpuid, mimpid, mhartid, mstatus, mtvex, mtdeleg, mip, mie, mtime, mtimecmp, mscratch, mepc, mcause, mbadaddr
+   1. 机器级CSR：
+
+      - mcpuid, mimpid, mhartid
+      - mstatus：硬件线程的当前操作状态
+      - mtvex：机器自陷向量基址寄存器
+      - mtdeleg：机器自陷转移寄存器
+      - mip：机器中断挂起
+      - mie：机器中断使能
+      - mtime, mtimecmp
+      - mscratch：记录机器模式上下文的地址
+      - mepc：机器异常程序计数器
+      - mcause：机器原因计数器
+      - mbadaddr：机器坏地址寄存器
 
    2. 机器模式特权指令
 
@@ -314,7 +326,16 @@
 
 4. 管理员级ISA
 
-   1. 管理员CSR：sstatus, sip, sie, stime, stimecmp, sscratch, sepc, scause, sbadaddr, sptbr, sasid
+   1. 管理员CSR：
+
+      - sstatus: 管理员状态寄存器，追踪处理器当前的操作状态。
+      - sip, sie：管理员中断寄存器，sip挂起中断，sie使能中断。
+      - stime, stimecmp
+      - sscratch：记录管理员模式上下文的指针
+      - sepc：记录引起异常的指令的地址
+      - scause：各种中断的来源
+      - sbadaddr：记录发生取指异常的错误地址
+      - sptbr, sasid
 
    2. 管理员指令
 
