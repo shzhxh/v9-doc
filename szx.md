@@ -1,6 +1,8 @@
-2017.12.30~2018.01.12
+2017.12.30~2018.01.15
 
-- 成功复现了张蔚的工作，记录了安装过程：[llb-qemu安装过程](https://github.com/shzhxh/v9-doc/blob/master/OS/installation-szx.md)
+- 成功复现了张蔚的工作，记录了安装过程：[bbl-ucore安装过程](https://github.com/shzhxh/v9-doc/blob/master/OS/installation-szx.md)
+- 阅读完毕bbl-ucore的文档，记录了阅读过程：[lab1](https://github.com/shzhxh/bbl-ucore/blob/szx-testing/docs/lab1-szx.md),[lab2](https://github.com/shzhxh/bbl-ucore/blob/szx-testing/docs/lab2-szx.md),[lab3](https://github.com/shzhxh/bbl-ucore/blob/szx-testing/docs/lab3-szx.md),[lab4](https://github.com/shzhxh/bbl-ucore/blob/szx-testing/docs/lab4-szx.md),[lab5](https://github.com/shzhxh/bbl-ucore/blob/szx-testing/docs/lab5-szx.md),[lab8](https://github.com/shzhxh/bbl-ucore/blob/szx-testing/docs/lab8-szx.md)
+- 记录了对RISCV指令集的学习过程：[RISC-V.md](https://github.com/shzhxh/v9-doc/blob/master/composition-principle/RISC-V.md)
 
 2017.12.23~2017.12.29
 
