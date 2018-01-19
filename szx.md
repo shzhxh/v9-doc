@@ -1,3 +1,9 @@
+2018.01.16~2018.01.19
+
+对zcu102平台使用方法的记录：[zcu102.md](https://github.com/shzhxh/v9-doc/blob/master/LabeledKernel/zcu102平台使用.md)
+
+下半年学习科研总结：[下半年总结.md](https://github.com/shzhxh/v9-doc/blob/master/docs/2017下学年总结.md)
+
 2017.12.30~2018.01.15
 
 - 成功复现了张蔚的工作，记录了安装过程：[bbl-ucore安装过程](https://github.com/shzhxh/v9-doc/blob/master/OS/installation-szx.md)
