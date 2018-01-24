@@ -1,8 +1,14 @@
+2018.01.20~2018.01.19
+
+- 阅读TailBench的论文，并尝试运行silo。
+- 阅读heracles的论文。
+- 阅读labeled risc-v的论文。
+- 将RISC-V移植到自己的开发板上。
+
 2018.01.16~2018.01.19
 
-对zcu102平台使用方法的记录：[zcu102.md](https://github.com/shzhxh/v9-doc/blob/master/LabeledKernel/zcu102平台使用.md)
-
-下半年学习科研总结：[下半年总结.md](https://github.com/shzhxh/v9-doc/blob/master/docs/2017下学年总结.md)
+- 对zcu102平台使用方法的记录：[zcu102.md](https://github.com/shzhxh/v9-doc/blob/master/LabeledKernel/zcu102平台使用.md)
+- 下半年学习科研总结：[下半年总结.md](https://github.com/shzhxh/v9-doc/blob/master/docs/2017下学年总结.md)
 
 2017.12.30~2018.01.15
 
