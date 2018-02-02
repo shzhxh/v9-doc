@@ -62,6 +62,17 @@ Harness控制着程序的运行，并测量所需的延迟。
 - 以上事项做好后，运行如下命令：
 
   `./build.sh silo`
+### 运行silo
+
+```shell
+cd silo
+sudo ./run.sh
+```
+
+### 分析结果
+
+`python utilities/parselats.sh silo/lats.bin`
+
 ## 二、安装img-dnn
 
 `./build.sh img-dnn`
@@ -82,6 +93,15 @@ Harness控制着程序的运行，并测量所需的延迟。
 
 `./build.sh shore`
 
+### 运行
+
+- 需要修改run.sh文件，将SCRATCH_DIR设置为/tmp
+- `sudo ./run.sh`
+
+### 分析结果
+
+`python utilities/parselats.py shore/lats.int.bin`
+
 ## 六、安装specjbb
 
 `./build.sh specjbb`
@@ -89,6 +109,12 @@ Harness控制着程序的运行，并测量所需的延迟。
 注：提示tbench_jni.o未找到，需要到harness目录下再编译一遍
 
 `./build.sh	# run in harness dir`
+
+### 运行specjbb
+
+`sudo ./run.sh`
+
+注：目前沿未能正常运行
 
 ## 七、安装sphinx
 

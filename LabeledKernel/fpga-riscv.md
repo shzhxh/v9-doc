@@ -10,6 +10,10 @@
    export RISCV=/opt/riscv/tool
    git submodule update --init --recursive
    ./build.sh	# 如果编译32位版本，应运行build-rv32ima.sh脚本
+   # 此时进到/opt/riscv/tools/bin目录下，看到的文件是riscv64-unknown-elf-*，而我们需要的riscv64-unknown-linux-gun-*，所以需要下面的步骤
+   cd riscv-gun-toolchain
+   ./configure --prefix=$RISCV	#生成makefile文件，用以生成riscv64-unknown-linux-gnu-*
+   make linux	#编译，成功后会看到/opt/riscv/tools/bin目录下生成了我们需要的文件
 
    # 编译riscv-pk和riscv-linux
    cd ../fpga		#在fpga目录下
@@ -33,6 +37,10 @@
 
    ```bash
    # 需要安装vivado2017.4
+   # 1. 从xilinx官网下载vivado2017.4(注：2017.3不能正常加载riscv的项目文件，请务必使用2017.4版本)
+   # 2. 解压下载到的压缩文件
+   # 3. 运行xsetup
+   # 4. 安装在/chydata/Xilinx/xilinx目录下
 
    # 编译vivado项目(在fpga目录)
    make project PRJ=myproject BOARD=zedboard
