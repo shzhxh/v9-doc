@@ -181,8 +181,17 @@
        - cfdisk命令格式化SD卡，创建一个50M分区，一个2G分区
 
        - mkfs命令将50M分区格式化为vfat，2G分区格式化为ext4
+	```shell
+	  mkfs.vfat /dev/sdc1
+	  mkfs -t ext4 /dev/sdc2
+	```
 
        - 将2G分区挂载到/mnt, 将50M分区挂载到/mnt/boot
+	```shell
+	  sudo mount /dev/sdc2 /mnt
+	  sudo mkdir /mnt/boot
+	  sudo mount /dev/sdc1 /mnt/boot
+	```
 
        - 将上几步生成的BOOT.BIN，system.dtb， zImage复制到/mnt/boot目录下
 
