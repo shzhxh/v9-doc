@@ -141,7 +141,7 @@
 
     5. 编译system.dtb
 
-       注：目前(2018.02.07)system.dtb尙有问题，请暂时从网上下载。
+       注：目前(2018.02.07)system.dtb尙有问题，请暂时从网上下载[system.dtb](https://github.com/shzhxh/v9-doc/blob/master/LabeledKernel/system.dtb)。
 
        ```shell
        git clone https://github.com/xilinx/device-tree-xlnx
